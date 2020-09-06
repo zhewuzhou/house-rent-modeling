@@ -1,0 +1,136 @@
+-   rfp: Rent House Disposition
+    key_timestamps: placed_at
+    participants: _Tenant, RegisteredUser
+    details:
+        Review House Booking:
+            review_time: date
+            evidences: HouseInfomation
+
+-   rfp: House Review Delegation
+    key_timestamps: placed_at
+    participants: _HouseOwner, RegisteredUser
+    details:
+        House Access:
+            delegated_time: date
+            evidences: HouseAccess
+
+-   proposal: Review House Proposal
+    key_timestamps: proposed_at
+    evidences: Rent House Disposition
+    participants: _Broker
+    details:
+        - Review House Booking
+
+-   proposal: House Review Delegation Proposal
+    key_timestamps: proposed_at
+    evidences: House Review Delegation
+    participants: _Broker
+    details:
+        - House Access
+
+-   contract: Review House
+    key_timestamps: placed_at
+    participants: _Broker, _Tenant, RegisteredUser
+    details:
+        - Review House Booking
+    fulfillment:
+        -   Review House Arrangement:
+                request:
+                    participants: _Tenant, RegisteredUser
+                confirm:
+                    evidences: ReviewArranment
+        -   Rent Negotiation Arrangement:
+                request:
+                    participants: _Broker, _HouseOwner, _Tenant, RegisteredUser
+                confirm:
+                    evidences:
+                        - NegotiationArranment
+                        - RentContract
+        -   Commission Payment:
+                request:
+                    participants: _Tenant, Account, RentContractPrice
+                confirm:
+                    evidences: RentContract
+                    variform: yes
+
+-   contract: Review House Delegation
+    key_timestamps: placed_at
+    participants: _Broker, _HouseOwner, RegisteredUser
+    details:
+        House Access
+    fulfillment:
+        -   Rent Negotiation Arrangement:
+                request:
+                    participants: _Broker, _HouseOwner, _Tenant, RegisteredUser
+                    confirm:
+                        evidences:
+                            - NegotiationArranment
+                            - RentContract
+        -   Delegation Fee Payment:
+                request:
+                    participants: _HouseOwner, Account
+                confirm:
+                    variform: yes
+        -   Rent Contract Template:
+                request:
+                    participants: _HouseOwner, RegisteredUser
+                confirm:
+                    evidences: ContractTemplate
+
+-   evidence: NegotiationArranment
+    key_timestamps: happened_at
+    key_data: location, time, participants
+
+-   evidence: RentContract
+    key_timestamps: happened_at
+    key_data: time, rent_price
+
+-   evidence: ReviewArranment
+    key_timestamps: happened_at
+    key_data: location, time, participants
+
+-   evidence: HouseInfomation
+    key_timestamps: registered_at
+    key_data: images, location, description, price
+
+-   evidence: HouseAccess
+    key_timestamps: authorized_at
+    key_data: key, card
+
+-   evidence: Commission Payment Request
+    key_timestamps: requested_at
+    key_data: total
+    participants: _Tenant, RegisteredUser, Account
+
+-   evidence: Commission Transaction
+    key_timestamps: confirmed_at
+    key_data: total
+    plays: _Commission Payment Confirmation
+    participants: _Tenant, RegisteredUser, Account
+
+-   evidence: Commission Payment Confirmation
+    evidences: Commission Payment Request
+    key_timestamps: confirmed_at
+    key_data: total
+    participants: _Online Payment
+    plays: _Commission Payment Confirmation
+
+-   evidence: Delegation Fee Payment Request
+    key_timestamps: requested_at
+    key_data: total
+    participants: _HouseOwner, RegisteredUser, Account
+
+-   evidence: Commission Transaction
+    key_timestamps: confirmed_at
+    key_data: total
+    plays: _Delegation Fee Payment Confirmation
+    participants: _HouseOwner, RegisteredUser, Account
+
+-   evidence: Delegation Fee Payment Confirmation
+    evidences: Delegation Fee Payment Request
+    key_timestamps: confirmed_at
+    key_data: total
+    participants: _Online Payment
+    plays: _Delegation Fee Payment Confirmation
+
+-   system: Online Payment
