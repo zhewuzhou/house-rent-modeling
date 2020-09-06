@@ -1,0 +1,51 @@
+-   proposal: House Advertisement Proposal
+    key_timestamps: proposed_at
+    evidences: Order Request
+    participants: _Advertisement Specialist
+    details:
+        - Display Position
+        - Display Duration
+
+-   contract: Advertisement Order
+    key_timestamps: placed_at
+    participants: _HouseOwner, Account, RegisteredUser
+    details:
+        - Display Position
+        - Display Duration
+    fulfillment:
+        -   Advertisement Order Payment:
+                request:
+                    participants: _HouseOwner, Account
+                confirm:
+                    variform: yes
+        -   Advertisement Display:
+                request:
+                    participants: _Position, House Description
+                confirm:
+                    evidences: PublicPages
+
+-   evidence: Advertisement Order Payment Request
+    key_timestamps: requested_at
+    key_data: total
+    participants: _HouseOwner, RegisteredUser, Account
+
+-   evidence: Transaction
+    key_timestamps: confirmed_at
+    key_data: total
+    plays: _Advertisement Order Payment Confirmation
+    participants: _HouseOwner, Account, RegisteredUser
+
+-   evidence: Advertisement Order Payment Confirmation
+    evidences: Advertisement Order Payment Request
+    key_timestamps: confirmed_at
+    key_data: total
+    participants: _Online Payment
+    plays: _Advertisementr Order Payment Confirmation
+
+-   evidence: PublicPages
+    key_timestamps: published_at
+    key_data: house_information
+    participants: RegisteredUser
+
+-   system: Online Payment
+
