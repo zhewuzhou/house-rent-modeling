@@ -42,6 +42,71 @@
                 key_data: qualified
                 evidence: Certification
 
+-   contract: MemberShip Subscription Order
+    key_timestamps: placed_at
+    participants: _Customer, _MooC Sales
+    details:
+        - Learning Disposition
+        -   Subscription Order:
+                key_data: duration
+                evidence: MemberShip Subscription
+    fulfillment:
+        -   MemberShip Creation Payment:
+                request:
+                    participants: _Customer, _MooC Sales
+                confirm:
+                    variform: yes
+        -   MemberShip Renew Payment:
+                request:
+                    participants: _Customer, _MooC Sales
+                confirm:
+                    variform: yes
+        -   Course Registration Request:
+                request:
+                    participants: _Customer
+                confirm:
+                    evidences: CourseRegistration
+
+-   evidence: MemberShip Creation Payment Request
+    key_timestamps: requested_at
+    key_data: total
+    participants: _Customer, _MooC Sales, Account
+
+-   evidence: Transaction
+    key_timestamps: confirmed_at
+    key_data: total
+    plays: _MemberShip Creation Payment Confirmation
+    participants: _Customer, _MooC Sales, Account
+
+-   evidence: MemberShip Creation Payment Confirmation
+    evidences: MemberShip Creation Payment Request
+    key_timestamps: confirmed_at
+    key_data: total
+    participants: _Online Payment
+    plays: _MemberShip Creation Payment Confirmation
+
+-   evidence: MemberShip Renew Payment Request
+    key_timestamps: requested_at
+    key_data: total
+    participants: _Customer, _MooC Sales, Account
+
+-   evidence: Transaction
+    key_timestamps: confirmed_at
+    key_data: total
+    plays: _MemberShip Renew Payment Confirmation
+    participants: _Customer, _MooC Sales, Account
+
+-   evidence: MemberShip Renew Payment Confirmation
+    evidences: MemberShip Renew Payment Request
+    key_timestamps: confirmed_at
+    key_data: total
+    participants: _Online Payment
+    plays: _MemberShip Renew Payment Confirmation
+
+-   evidence: CourseRegistration
+    key_timestamps: registered_at
+    key_data: course detaild arrangement
+    participants: _Member
 
 -   evidence: Certification
     key_timestamps: issued_at
@@ -59,6 +124,3 @@
     key_data: price_per_month, renew_date
 
 -   system: Online Payment
-
-
-
