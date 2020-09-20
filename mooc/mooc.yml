@@ -1,0 +1,45 @@
+## 1. renew & subscribe in the same place
+## 2. Course registrations/confirmation
+
+# Personal Shop
+# Pretty much same with the multi payments
+# But this one support shop pickup.
+
+## 1. renew & subscribe in the same place
+## 2. Course registrations/confirmation
+
+# Personal Shop
+# Pretty much same with the multi payments
+# But this one support shop pickup.
+
+-   rfp: Certification Request
+    key_timestamps: placed_at
+    participants: _Customers
+    details:
+        Learning Disposition:
+            key_data: amount
+            evidences: Online Course
+
+-   proposal: MemberShip Subscription
+    key_timestamps: proposed_at
+    evidence: Certification Request
+    participants: _MooC Sales
+    details:
+        - Learning Disposition
+        -   Subscription Order:
+                key_data: duration
+                evidence: MemberShip Subscription
+
+
+-   evidence: Online Course
+    key_timestamps: shelved_at
+    key_data: price, enronment_start
+
+-   evidence: MemberShip Subscription
+    key_timestamps: subscribed_at
+    key_data: price_per_month, renew_date
+
+-   system: Online Payment
+
+
+
