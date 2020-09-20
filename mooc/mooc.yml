@@ -1,17 +1,3 @@
-## 1. renew & subscribe in the same place
-## 2. Course registrations/confirmation
-
-# Personal Shop
-# Pretty much same with the multi payments
-# But this one support shop pickup.
-
-## 1. renew & subscribe in the same place
-## 2. Course registrations/confirmation
-
-# Personal Shop
-# Pretty much same with the multi payments
-# But this one support shop pickup.
-
 -   rfp: Certification Request
     key_timestamps: placed_at
     participants: _Customers
@@ -65,7 +51,7 @@
                 request:
                     participants: _Customer
                 confirm:
-                    evidences: CourseRegistration
+                    variform: yes
 
 -   evidence: MemberShip Creation Payment Request
     key_timestamps: requested_at
@@ -105,6 +91,7 @@
 
 -   evidence: CourseRegistration
     key_timestamps: registered_at
+    plays: _Course Registration Confirmation
     key_data: course detaild arrangement
     participants: _Member
 
@@ -123,29 +110,25 @@
                 request:
                     participants: _Member, _Course Registration Confirmation
                 confirm:
-                    evidece:
-                        - Enronment
+                    variform: yes
         -   Course Exam Request:
                 request:
                     participants: _Member
                 confirm:
-                    evidece:
-                        - Exam Arrangement
-                        - Exam Notification
+                    variform: yes
         -   Course Exam Score:
                 request:
                     participants: _Teacher
                 confirm:
-                    evidece:
-                        - Exam Arrangement
-                        - Mark Assigement
+                    variform: yes
         -   Course Certification:
                 request:
                     participants: _Member, _Teacher
                 confirm:
-                    evidences: Certification
+                    variform: yes
 
 -   evidence: Certification
+    plays: _Course Certification Confirmation
     key_timestamps: issued_at
 
 -   evidence: Online Course
@@ -153,19 +136,23 @@
     key_data: price, enronment_start
 
 -   evidence: Exam Arrangement
+    plays: _Course Exam Request Confirmation
     key_timestamps: expired_at, finished_at
     key_data: answer_submission
 
 -   evidence: Exam Notification
     key_timestamps: expired_at, noticed_at
+    plays: _Course Exam Request Confirmation
     key_data: email content
 
 -   evidence: Mark Assigement
     key_timestamps: expired_at, assiged_at
+    plays: _Course Exam Score Confirmation
     key_data: score
 
 -   evidence: Enronment
     key_timestamps: enroned_at
+    plays: _Course Enronment Confirmation
     key_data: learning_progress
 
 -   evidence: MemberShip Subscription
