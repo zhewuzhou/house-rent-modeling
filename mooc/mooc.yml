@@ -30,10 +30,29 @@
                 key_data: duration
                 evidence: MemberShip Subscription
 
+-   proposal: Course Commitment
+    key_timestamps: proposed_at
+    evidence: Certification Request
+    participants: _Customers, _Teacher
+    details:
+        -   Exam Request:
+                key_data: times
+                evidence: Exam Arrangement
+        -   Certification Approvement:
+                key_data: qualified
+                evidence: Certification
+
+
+-   evidence: Certification
+    key_timestamps: issued_at
 
 -   evidence: Online Course
     key_timestamps: shelved_at
     key_data: price, enronment_start
+
+-   evidence: Exam Arrangement
+    key_timestamps: expired_at, finished_at
+    key_data: answer_submission
 
 -   evidence: MemberShip Subscription
     key_timestamps: subscribed_at
