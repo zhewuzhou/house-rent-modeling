@@ -121,7 +121,7 @@
     fulfillment:
         -   Course Enronment:
                 request:
-                    participants: _Member
+                    participants: _Member, _Course Registration Confirmation
                 confirm:
                     evidece:
                         - Enronment
