@@ -1,3 +1,7 @@
-# house-rent-modeling
+# Modeling
 
-This is a challenge of modeling a house rent platform with 8x-flow
+Contract based modeling.
+
+This is a repo contains modeling via:
+1. Find the contracts of the business flow
+2. Take contracts as core and do the modeling work
