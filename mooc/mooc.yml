@@ -108,6 +108,43 @@
     key_data: course detaild arrangement
     participants: _Member
 
+-   contract: Course Commitment Requirement
+    key_timestamps: placed_at
+    participants: _Customer, _Teacher,
+    details:
+        -   Exam Request:
+                key_data: times
+                evidence: Exam Arrangement
+        -   Certification Approvement:
+                key_data: qualified
+                evidence: Certification
+    fulfillment:
+        -   Course Enronment:
+                request:
+                    participants: _Member
+                confirm:
+                    evidece:
+                        - Enronment
+        -   Course Exam Request:
+                request:
+                    participants: _Member
+                confirm:
+                    evidece:
+                        - Exam Arrangement
+                        - Exam Notification
+        -   Course Exam Score:
+                request:
+                    participants: _Teacher
+                confirm:
+                    evidece:
+                        - Exam Arrangement
+                        - Mark Assigement
+        -   Course Certification:
+                request:
+                    participants: _Member, _Teacher
+                confirm:
+                    evidences: Certification
+
 -   evidence: Certification
     key_timestamps: issued_at
 
@@ -118,6 +155,18 @@
 -   evidence: Exam Arrangement
     key_timestamps: expired_at, finished_at
     key_data: answer_submission
+
+-   evidence: Exam Notification
+    key_timestamps: expired_at, noticed_at
+    key_data: email content
+
+-   evidence: Mark Assigement
+    key_timestamps: expired_at, assiged_at
+    key_data: score
+
+-   evidence: Enronment
+    key_timestamps: enroned_at
+    key_data: learning_progress
 
 -   evidence: MemberShip Subscription
     key_timestamps: subscribed_at
