@@ -57,12 +57,10 @@
     key_data: service_type, service_price
 
 -   evidence: Train Ticket Payment Confirmation
-    key_timestamps: Offcial Online Ticket Booking System
+    key_timestamps: paid_at
     key_data: total
-    participants: _Offcial Online Ticket Booking System
+    participants: _Offcial Online Ticket Booking System, , _RenNiXing
     plays: _Train Ticket Payment Confirmation
 
 
 -   system: Offcial Online Ticket Booking System
-
-
