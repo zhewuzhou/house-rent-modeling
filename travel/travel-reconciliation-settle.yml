@@ -1,0 +1,26 @@
+-   rfp: Enterprise Staff Travel Solution
+    key_timestamps: placed_at
+    participants: _Enterprise Customer, _RenNiXing
+    details:
+        Settle:
+            settle_time: date
+            evidences: Settle Confirmation
+        Stamp:
+            isssued_at: date
+            evidences: Stamp Confirmation
+        ServiceAccount:
+            isssued_at: date
+            evidences: Enterprise Staff Information Upload Confirmation
+
+-   evidence: Settle Confirmation
+    key_timestamps: settled_at
+    key_data: amount, order_confirmation, order_details
+
+-   evidence: Stamp Confirmation
+    key_timestamps: issued_at
+    key_data: amount, tax_amount, stamp_identification, stamp_details
+
+-   evidence: Enterprise Staff Information Upload Confirmation
+    key_timestamps: uploaded_at
+    key_data: national_idendifier, phone_number, passport_number, personal_information
+
