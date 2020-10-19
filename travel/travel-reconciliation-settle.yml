@@ -6,20 +6,49 @@
             isssued_at: date
             evidences: Enterprise Staff Information Upload Confirmation
 
--   proposal: Travel Cost Settle
+-   proposal: Travel Cost Settlement Proposal
     key_timestamps: proposed_at
-    evidences: Settle Request
+    evidences: Settlement Request
     participants: _RenNiXing
     details:
         - ServiceAccount
-        - Settle:
+        - Settlement:
             key_data: total_price
-            evidences: Settle Confirmation
+            evidences: Settlement Confirmation
         - Stamp:
             isssued_at: date
             evidences: Stamp Confirmation
 
--   evidence: Settle Confirmation
+-   contract: Travel Cost Settlement
+    key_timestamps: placed_at
+    participants: _Enterprise Customer, _RenNiXing, OrdersConfirmation
+    details:
+        - ServiceAccount
+        - Settlement
+        - Stamp
+    fulfillment:
+        -   ServiceAccount:
+                request:
+                    participants: _Enterprise Customer, _RenNiXing
+                confirm:
+                    evidences: ServiceAccount
+        -   Settlement:
+                request:
+                    participants: _Enterprise Customer, _RenNiXing, OrdersConfirmation
+                confirm:
+                    variform: yes
+                    evidences:
+                        - OrdersConfirmation
+                        - Settlement Payment
+        -   Stamp:
+                request:
+                    participants: _Enterprise Customer, _RenNiXing
+                confirm:
+                    evidences:
+                        - Stamp Confirmation
+
+
+-   evidence: Settlement Confirmation
     key_timestamps: settled_at
     key_data: amount, order_confirmation, order_details
 
@@ -29,5 +58,21 @@
 
 -   evidence: Enterprise Staff Information Upload Confirmation
     key_timestamps: uploaded_at
-    key_data: national_idendifier, phone_number, passport_number, personal_information
+    key_data: national_idendifier, phone_number, passport_number, personal_information, travel_booking_accesses
+
+-   evidence: OrdersConfirmation
+    key_timestamps: confirmed_at
+    participants: Enterprise Staff, _ReniXing
+    key_data: total_order_list, total_amount, order_confirmation
+
+-   evidence: Settlement Payment Request
+    key_timestamps: requested_at
+    key_data: total
+    participants: _Enterprise Customer, _RenNiXing, Account
+
+-   evidence: Settlement Transaction
+    key_timestamps: confirmed_at
+    key_data: total
+    plays: _Settlement Payment Confirmation
+    participants: _Enterprise Customer, _RenNiXing, Account
 
