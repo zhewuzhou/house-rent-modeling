@@ -20,6 +20,8 @@
                     variform: yes
                     evidences:
                         - Train
+                        - Train Cancel
+                        - Train Change
                         - Booking
         -   Manual Service:
                 request:
@@ -28,6 +30,14 @@
                     variform: yes
                     evidences:
                         - Manual Serivce
+
+-   evidence: Train Cancel
+    key_timestamps: canceled_at
+    key_data: cancel_price
+
+-   evidence: Train Change
+    key_timestamps: canceled_at
+    key_data: change_price
 
 -   evidence: Train
     key_timestamps: ordered_at
