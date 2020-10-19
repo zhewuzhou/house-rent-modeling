@@ -32,7 +32,7 @@
                         - Manual Serivce
         -   Train Ticket Payment:
                 request:
-                    participants: _RenNiXing, 12306Account
+                    participants: _RenNiXing, _Offcial Online Ticket Booking System, _12306Account
                 confirm:
                     variform: yes
 
@@ -59,7 +59,7 @@
 -   evidence: Train Ticket Payment Confirmation
     key_timestamps: paid_at
     key_data: total
-    participants: _Offcial Online Ticket Booking System, , _RenNiXing
+    participants: _Offcial Online Ticket Booking System, _RenNiXing
     plays: _Train Ticket Payment Confirmation
 
 

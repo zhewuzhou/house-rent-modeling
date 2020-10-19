@@ -28,7 +28,7 @@
                         - Flight Change
         -   Flight Ticket Payment:
                 request:
-                    participants: _RenNiXing
+                    participants: _RenNiXing, _Offcial Flight Ticket Booking System
                 confirm:
                     variform: yes
         -   Manual Service:

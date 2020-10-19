@@ -1,33 +1,35 @@
--   proposal: Hotel Room Booking Proposal
+-   proposal: Car Booking Proposal
     key_timestamps: proposed_at
-    evidences: Hotel Room Booking Request
+    evidences: Car Booking Request
     participants: _RenNiXing
     details:
-        - Hotel Room
+        - Car
         - Booking
 
--   contract: Hotel Room Ticket Booking
+-   contract: Car Ticket Booking
     key_timestamps: placed_at
     participants: _Enterprise Customer, _RenNiXing, ServiceAccount
     details:
-        - Hotel Room
+        - Car
         - Booking
     fulfillment:
-        -   Hotel Room Booking:
+        -   Car Booking:
                 request:
                     participants: _Enterprise Customer, ServiceAccount
                 confirm:
                     variform: yes
                     evidences:
-                        - Hotel Room
-                        - Hotel Room Cancel
-                        - Hotel Room Change
+                        - Car
+                        - Car Cancel
                         - Booking
-        -   Hotel Room Pre Payment:
+                        - Delivery Details
+        -   Car Payment:
                 request:
-                    participants: _RenNiXing, _Offcial Hotel Rooking System
+                    participants: _RenNiXing, _Offcial Car Rooking System
                 confirm:
                     variform: yes
+                    evidences:
+                        - Delivery Details
 
         -   Manual Service:
                 request:
@@ -37,15 +39,11 @@
                     evidences:
                         - Manual Serivce
 
--   evidence: Hotel Room Cancel
+-   evidence: Car Cancel
     key_timestamps: canceled_at
     key_data: cancel_price
 
--   evidence: Hotel Room Change
-    key_timestamps: canceled_at
-    key_data: change_price
-
--   evidence: Hotel Room
+-   evidence: Car
     key_timestamps: ordered_at
     key_data: room_num, room_type, room_price_at
 
@@ -57,10 +55,15 @@
     key_timestamps: served_at
     key_data: service_type, service_price
 
--   evidence: Hotel Room Pre Payment Confirmation
-    key_timestamps: paid_at
-    key_data: total
-    participants: _Offcial Hotel Rooking System, _RenNiXing
-    plays: _Hotel Room Pre Payment Confirmation
+-   evidence: Delivery Details
+    key_timestamps: arrived_at
+    key_data: destination, started_at, time_takes, extra_fee
 
--   system: Offcial Hotel Rooking System
+
+-   evidence: Car Payment Confirmation
+    key_timestamps: paid_at
+    key_data: total, arrived_at
+    participants: _Offcial Car Rooking System, _RenNiXing
+    plays: _Car Pre Payment Confirmation
+
+-   system: Offcial Car Rooking System
