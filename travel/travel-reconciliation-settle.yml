@@ -4,7 +4,7 @@
     details:
         ServiceAccount:
             isssued_at: date
-            evidences: Enterprise Staff Information Upload Confirmation
+            evidences: Service Account Details
 
 -   proposal: Travel Cost Settlement Proposal
     key_timestamps: proposed_at
@@ -31,7 +31,9 @@
                 request:
                     participants: _Enterprise Customer, _RenNiXing
                 confirm:
-                    evidences: ServiceAccount
+                    evidences:
+                        - Enterprise Staff Information Upload Confirmation
+                        - ServiceAccount
         -   Settlement:
                 request:
                     participants: _Enterprise Customer, _RenNiXing, OrdersConfirmation
@@ -47,6 +49,9 @@
                     evidences:
                         - Stamp Confirmation
 
+-   evidence: Service Account Details
+    key_timestamps: created_at
+    key_data: login_phone_number, travel_booking_accesses
 
 -   evidence: Settlement Confirmation
     key_timestamps: settled_at
@@ -58,7 +63,7 @@
 
 -   evidence: Enterprise Staff Information Upload Confirmation
     key_timestamps: uploaded_at
-    key_data: national_idendifier, phone_number, passport_number, personal_information, travel_booking_accesses
+    key_data: national_idendifier, phone_number, passport_number, personal_information
 
 -   evidence: OrdersConfirmation
     key_timestamps: confirmed_at
