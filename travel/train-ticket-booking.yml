@@ -1,0 +1,44 @@
+-   proposal: Train Ticket Booking Proposal
+    key_timestamps: proposed_at
+    evidences: Train Booking Request
+    participants: _RenNiXing
+    details:
+        - Train
+        - Booking
+
+-   contract: Train Ticket Booking
+    key_timestamps: placed_at
+    participants: _Enterprise Customer, _RenNiXing, 12306Account, ServiceAccount
+    details:
+        - Train
+        - Booking
+    fulfillment:
+        -   Train Booking:
+                request:
+                    participants: _Enterprise Customer, 12306Account, ServiceAccount
+                confirm:
+                    variform: yes
+                    evidences:
+                        - Train
+                        - Booking
+        -   Manual Service:
+                request:
+                    participants: _Enterprise Customer, 12306Account, ServiceAccount, _RenNiXing
+                confirm:
+                    variform: yes
+                    evidences:
+                        - Manual Serivce
+
+-   evidence: Train
+    key_timestamps: ordered_at
+    key_data: from, to, train_number, started_at, arrived_at
+
+-   evidence: Booking
+    key_timestamps: booked_at
+    key_data: total_price, ticket_price, manual_service_price
+
+-   evidence: Manual Serivce
+    key_timestamps: served_at
+    key_data: service_type, service_price
+
+

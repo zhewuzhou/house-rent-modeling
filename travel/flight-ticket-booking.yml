@@ -1,0 +1,59 @@
+-   proposal: Flight Ticket Booking Proposal
+    key_timestamps: proposed_at
+    evidences: Flight Booking Request
+    participants: _RenNiXing
+    details:
+        - Flight Price
+        - Flight
+        - Booking
+
+-   contract: Flight Ticket Booking
+    key_timestamps: placed_at
+    participants: _Enterprise Customer, _RenNiXing, ServiceAccount
+    details:
+        - Flight Price
+        - Flight
+        - Booking
+    fulfillment:
+        -   Flight Booking:
+                request:
+                    participants: _Enterprise Customer, ServiceAccount
+                confirm:
+                    variform: yes
+                    evidences:
+                        - Flight Price
+                        - Flight
+                        - Booking
+                        - Flight Cancel
+                        - Flight Change
+        -   Manual Service:
+                request:
+                    participants: _Enterprise Customer, ServiceAccount, _RenNiXing
+                confirm:
+                    variform: yes
+                    evidences:
+                        - Manual Serivce
+
+-   evidence: Flight Cancel
+    key_timestamps: canceled_at
+    key_data: cancel_price
+
+-   evidence: Flight Change
+    key_timestamps: canceled_at
+    key_data: change_price
+
+-   evidence: Flight Price
+    key_timestamps: price_at
+    key_data: booking_channel, discount
+
+-   evidence: Flight
+    key_timestamps: ordered_at
+    key_data: from, to, train_number, started_at, arrived_at
+
+-   evidence: Booking
+    key_timestamps: booked_at
+    key_data: total_price, ticket_price, manual_service_price
+
+-   evidence: Manual Serivce
+    key_timestamps: served_at
+    key_data: service_type, service_price
