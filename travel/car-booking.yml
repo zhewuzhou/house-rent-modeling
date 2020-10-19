@@ -39,9 +39,22 @@
                     evidences:
                         - Manual Serivce
 
+        -   Stamp:
+                request:
+                    participants: Enterprise, _RenNiXing
+                confirm:
+                    variform: yes
+                    evidences:
+                        - Car Stamp
+
 -   evidence: Car Cancel
     key_timestamps: canceled_at
     key_data: cancel_price
+
+-   evidence: Car Stamp
+    key_timestamps: issued_at
+    key_data: amount, tax_amount, stamp_identification, stamp_details
+
 
 -   evidence: Car
     key_timestamps: ordered_at

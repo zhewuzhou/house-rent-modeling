@@ -36,9 +36,21 @@
                 confirm:
                     variform: yes
 
+        -   Stamp:
+                request:
+                    participants: Enterprise, _RenNiXing
+                confirm:
+                    variform: yes
+                    evidences:
+                        - Train Stamp
+
 -   evidence: Train Cancel
     key_timestamps: canceled_at
     key_data: cancel_price
+
+-   evidence: Train Stamp
+    key_timestamps: issued_at
+    key_data: amount, tax_amount, stamp_identification, stamp_details
 
 -   evidence: Train Change
     key_timestamps: canceled_at

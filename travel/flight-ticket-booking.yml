@@ -39,9 +39,22 @@
                     evidences:
                         - Manual Serivce
 
+        -   Stamp:
+                request:
+                    participants: Enterprise, _RenNiXing
+                confirm:
+                    variform: yes
+                    evidences:
+                        - Flight Stamp
+
 -   evidence: Flight Cancel
     key_timestamps: canceled_at
     key_data: cancel_price
+
+-   evidence: Flight Stamp
+    key_timestamps: issued_at
+    key_data: amount, tax_amount, stamp_identification, stamp_details
+
 
 -   evidence: Flight Change
     key_timestamps: canceled_at

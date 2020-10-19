@@ -42,12 +42,6 @@
                     evidences:
                         - OrdersConfirmation
                         - Settlement Payment
-        -   Stamp:
-                request:
-                    participants: _Enterprise Customer, _RenNiXing
-                confirm:
-                    evidences:
-                        - Stamp Confirmation
 
 -   evidence: Service Account Details
     key_timestamps: created_at
@@ -56,10 +50,6 @@
 -   evidence: Settlement Confirmation
     key_timestamps: settled_at
     key_data: amount, order_confirmation, order_details
-
--   evidence: Stamp Confirmation
-    key_timestamps: issued_at
-    key_data: amount, tax_amount, stamp_identification, stamp_details
 
 -   evidence: Enterprise Staff Information Upload Confirmation
     key_timestamps: uploaded_at
