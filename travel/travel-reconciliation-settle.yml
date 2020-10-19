@@ -2,15 +2,22 @@
     key_timestamps: placed_at
     participants: _Enterprise Customer, _RenNiXing
     details:
-        Settle:
-            settle_time: date
-            evidences: Settle Confirmation
-        Stamp:
-            isssued_at: date
-            evidences: Stamp Confirmation
         ServiceAccount:
             isssued_at: date
             evidences: Enterprise Staff Information Upload Confirmation
+
+-   proposal: Travel Cost Settle
+    key_timestamps: proposed_at
+    evidences: Settle Request
+    participants: _RenNiXing
+    details:
+        - ServiceAccount
+        - Settle:
+            key_data: total_price
+            evidences: Settle Confirmation
+        - Stamp:
+            isssued_at: date
+            evidences: Stamp Confirmation
 
 -   evidence: Settle Confirmation
     key_timestamps: settled_at
