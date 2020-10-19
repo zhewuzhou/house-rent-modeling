@@ -30,6 +30,11 @@
                     variform: yes
                     evidences:
                         - Manual Serivce
+        -   Train Ticket Payment:
+                request:
+                    participants: _RenNiXing, 12306Account
+                confirm:
+                    variform: yes
 
 -   evidence: Train Cancel
     key_timestamps: canceled_at
@@ -50,5 +55,14 @@
 -   evidence: Manual Serivce
     key_timestamps: served_at
     key_data: service_type, service_price
+
+-   evidence: Train Ticket Payment Confirmation
+    key_timestamps: Offcial Online Ticket Booking System
+    key_data: total
+    participants: _Offcial Online Ticket Booking System
+    plays: _Train Ticket Payment Confirmation
+
+
+-   system: Offcial Online Ticket Booking System
 
 

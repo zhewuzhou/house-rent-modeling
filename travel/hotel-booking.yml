@@ -1,0 +1,53 @@
+-   proposal: Hotel Room Booking Proposal
+    key_timestamps: proposed_at
+    evidences: Hotel Room Booking Request
+    participants: _RenNiXing
+    details:
+        - Hotel Room
+        - Booking
+
+-   contract: Hotel Room Ticket Booking
+    key_timestamps: placed_at
+    participants: _Enterprise Customer, _RenNiXing, ServiceAccount
+    details:
+        - Hotel Room
+        - Booking
+    fulfillment:
+        -   Hotel Room Booking:
+                request:
+                    participants: _Enterprise Customer, ServiceAccount
+                confirm:
+                    variform: yes
+                    evidences:
+                        - Hotel Room
+                        - Hotel Room Cancel
+                        - Hotel Room Change
+                        - Booking
+
+        -   Manual Service:
+                request:
+                    participants: _Enterprise Customer, ServiceAccount, _RenNiXing
+                confirm:
+                    variform: yes
+                    evidences:
+                        - Manual Serivce
+
+-   evidence: Hotel Room Cancel
+    key_timestamps: canceled_at
+    key_data: cancel_price
+
+-   evidence: Hotel Room Change
+    key_timestamps: canceled_at
+    key_data: change_price
+
+-   evidence: Hotel Room
+    key_timestamps: ordered_at
+    key_data: room_num, room_type, room_price_at
+
+-   evidence: Booking
+    key_timestamps: booked_at
+    key_data: total_price, total_room_price, total_manual_service_price
+
+-   evidence: Manual Serivce
+    key_timestamps: served_at
+    key_data: service_type, service_price

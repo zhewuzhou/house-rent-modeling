@@ -26,6 +26,11 @@
                         - Booking
                         - Flight Cancel
                         - Flight Change
+        -   Flight Ticket Payment:
+                request:
+                    participants: _RenNiXing
+                confirm:
+                    variform: yes
         -   Manual Service:
                 request:
                     participants: _Enterprise Customer, ServiceAccount, _RenNiXing
@@ -57,3 +62,12 @@
 -   evidence: Manual Serivce
     key_timestamps: served_at
     key_data: service_type, service_price
+
+-   evidence: Flight Ticket Payment Confirmation
+    key_timestamps: Offcial Online Ticket Booking System
+    key_data: total
+    participants: _Offcial Flight Ticket Booking System
+    plays: _Flight Ticket Payment Confirmation
+
+
+-   system: Offcial Flight Ticket Booking System
