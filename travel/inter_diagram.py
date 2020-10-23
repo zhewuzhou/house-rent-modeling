@@ -33,10 +33,16 @@ with Diagram("RenNiXing Travel System Web Services", show=False):
 
     for i in range(len(k8s_services)):
         k8s_services[i] >> replica_pods[i]
+        replica_pods[i] << metrics
 
     with Cluster("Event Stream"):
         master = Redis("topics")
         master - Redis("replica") << metrics
+        replica_pods >> master
+
+    with Cluster("HA Cache"):
+        master = Redis("Main Cache")
+        master - Redis("Replica Cache") << metrics
         replica_pods >> master
 
     with Cluster("Database HA"):
